@@ -10,3 +10,4 @@
 
 - Splash screen using [`flutter_native_splash`](https://pub.dev/packages/flutter_native_splash) package
 - Use a SVG icon using [`flutter_svg`](https://pub.dev/packages/flutter_svg) package
+- Use the `PageView` widget to make carousel images
