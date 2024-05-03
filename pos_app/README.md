@@ -6,8 +6,15 @@
 
 ![result](#)
 
-## What I learned from this project
+## Skills
 
-- Splash screen using [`flutter_native_splash`](https://pub.dev/packages/flutter_native_splash) package
-- Use a SVG icon using [`flutter_svg`](https://pub.dev/packages/flutter_svg) package
-- Use the `PageView` widget to make carousel images
+### Packages
+
+- [`flutter_native_splash`](https://pub.dev/packages/flutter_native_splash) package for splash screen.
+- [`flutter_svg`](https://pub.dev/packages/flutter_svg) package for using a SVG icon.
+- [`flutter_staggered_grid_view`](https://pub.dev/packages/flutter_staggered_grid_view) package for a grid view to layout an item with content sized height.
+
+### Widgets
+
+- `PageView` widget for a carousel images using a calculated `viewportFraction` of `PageController` to calculate spacing that depends on the image width.
+  - For an each image, `viewportFraction = (horizontalPadding * 2 + itemWidth) / pageViewWidth`
