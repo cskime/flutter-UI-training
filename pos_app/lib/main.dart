@@ -12,7 +12,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomeView(),
+      home: const HomeView(),
+      theme: ThemeData(
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+            // selectedItemColor: Palette.primary,
+            // selectedLabelStyle: TextStyle(fontSize: 12, color: Palette.primary),
+            // unselectedItemColor: Palette.grey,
+            // unselectedLabelStyle: TextStyle(fontSize: 12, color: Palette.grey),
+            // backgroundColor: Colors.white,
+            ),
+      ),
     );
   }
 }

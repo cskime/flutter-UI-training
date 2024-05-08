@@ -6,7 +6,7 @@
 
 ![result](#)
 
-## Skills
+## What I learned
 
 ### Packages
 
@@ -18,3 +18,8 @@
 
 - `PageView` widget for a carousel images using a calculated `viewportFraction` of `PageController` to calculate spacing that depends on the image width.
   - For an each image, `viewportFraction = (horizontalPadding * 2 + itemWidth) / pageViewWidth`
+- Difference of `viewInset`, `padding`, `viewPadding` that is a property of `MediaQueryData`.
+  - `viewInset` : The parts of the display that are completely obscured by system UI, typically by the device's keyboard.
+  - `viewPadding` : The parts of the display that are partially obscured by system UI, typically by the hardware display nothces or the system status bar.
+  - `padding` : calculated results from `max(0.0, viewPadding - viewInset)`
+  - Use `viewPadding` to get a static screen inset.

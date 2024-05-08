@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:pos_app/design/palette.dart';
+import 'package:pos_app/design/svg_icon_provider.dart';
 
 enum Menu {
   penjualan,
@@ -19,14 +19,7 @@ enum Menu {
         Menu.laporan => 'Laporan',
       };
 
-  String get iconPath => switch (this) {
-        Menu.penjualan => 'assets/icons/icon-penjualan.svg',
-        Menu.penyimpanan => 'assets/icons/icon-penyimpanan.svg',
-        Menu.pelanggan => 'assets/icons/icon-pelanggan.svg',
-        Menu.pegawai => 'assets/icons/icon-pegawai.svg',
-        Menu.produk => 'assets/icons/icon-produk.svg',
-        Menu.laporan => 'assets/icons/icon-laporan.svg',
-      };
+  String get iconName => 'icon-${title.toLowerCase()}';
 }
 
 class MenuItem extends StatelessWidget {
@@ -52,15 +45,7 @@ class MenuItem extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SvgPicture.asset(
-            menu.iconPath,
-            colorFilter: const ColorFilter.mode(
-              Color(0xFF5D5FEF),
-              BlendMode.srcIn,
-            ),
-            width: 32,
-            height: 32,
-          ),
+          SvgIconProvider.icon(menu.iconName),
           const SizedBox(height: 25),
           Text(
             menu.title,
