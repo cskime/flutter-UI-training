@@ -3,8 +3,10 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:pos_app/design/palette.dart';
 import 'package:pos_app/design/svg_icon_provider.dart';
 import 'package:pos_app/src/view/home/widgets/alert_dot.dart';
-import 'package:pos_app/src/view/home/widgets/custom_bottom_navigation_bar.dart';
-import 'package:pos_app/src/view/home/widgets/menu_item.dart';
+import 'package:pos_app/src/view/home/widgets/bottom_navigation_bar/custom_bottom_navigation_bar.dart';
+import 'package:pos_app/src/view/home/widgets/image_carousel.dart';
+import 'package:pos_app/src/view/home/widgets/menu/menu.dart';
+import 'package:pos_app/src/view/home/widgets/menu/menu_item.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -14,21 +16,10 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  late PageController pageController;
   int currentBottomNavigationIndex = 0;
-
-  PageController _pageController(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    const itemWidth = 311;
-    const itemPadding = 8;
-    return PageController(
-      viewportFraction: (2 * itemPadding + itemWidth) / width,
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
-    pageController = _pageController(context);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: _appBar,
@@ -40,25 +31,28 @@ class _HomeViewState extends State<HomeView> {
     return AppBar(
       backgroundColor: Colors.white,
       centerTitle: false,
-      title: const Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'John Doe',
-            style: TextStyle(
-              color: Color(0xff222831),
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
+      title: const DefaultTextStyle(
+        style: TextStyle(), // Use default font family in AppBar
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'John Doe',
+              style: TextStyle(
+                color: Color(0xff222831),
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+              ),
             ),
-          ),
-          Text(
-            'kasir Toko A',
-            style: TextStyle(
-              color: Color(0xff7c7c7c),
-              fontSize: 12,
+            Text(
+              'kasir Toko A',
+              style: TextStyle(
+                color: Color(0xff7c7c7c),
+                fontSize: 12,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
       actions: [
         Padding(
@@ -85,16 +79,9 @@ class _HomeViewState extends State<HomeView> {
           child: Column(
             children: [
               const SizedBox(height: 12),
-              SizedBox(
+              const SizedBox(
                 height: 150,
-                child: PageView.builder(
-                  controller: pageController,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 5,
-                  itemBuilder: (context, index) => Image.asset(
-                    'assets/images/carousel-item.png',
-                  ),
-                ),
+                child: ImageCarousel(),
               ),
               const SizedBox(height: 32),
               Padding(

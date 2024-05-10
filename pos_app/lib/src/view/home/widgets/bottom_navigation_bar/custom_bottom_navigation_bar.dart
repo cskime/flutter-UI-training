@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pos_app/design/palette.dart';
 import 'package:pos_app/design/svg_icon_provider.dart';
-import 'package:pos_app/src/view/home/widgets/custom_bottom_navigation_bar_item.dart';
+import 'package:pos_app/src/view/home/widgets/bottom_navigation_bar/custom_bottom_navigation_bar_item.dart';
+import 'package:pos_app/src/view/home/widgets/bottom_navigation_bar/custom_navigation_item.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
   const CustomBottomNavigationBar({super.key});
@@ -13,6 +14,24 @@ class CustomBottomNavigationBar extends StatefulWidget {
 
 class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   int currentIndex = 0;
+
+  List<Widget> get items {
+    var items = CustomNavigationItem.values.indexed.map<Widget>((value) {
+      final itemIndex = value.$1;
+      final item = value.$2;
+      final isSelected = itemIndex == currentIndex;
+      return CustomBottomNavigationBarItem(
+        iconName: item.iconName(isSelected: isSelected),
+        title: item.title,
+        color: isSelected ? Palette.primary : Palette.grey,
+        onPressed: () => setState(() {
+          currentIndex = itemIndex;
+        }),
+      );
+    }).toList();
+    items.insert(CustomNavigationItem.values.length ~/ 2, const Spacer());
+    return items;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,35 +59,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                 ),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),
-                  child: Row(
-                    children: [
-                      CustomBottomNavigationBarItem(
-                        iconName: 'icon-beranda',
-                        title: 'Beranda',
-                        color: Palette.grey,
-                        onPressed: () {},
-                      ),
-                      CustomBottomNavigationBarItem(
-                        iconName: 'icon-rekap-kas',
-                        title: 'Rekap Kas',
-                        color: Palette.grey,
-                        onPressed: () {},
-                      ),
-                      const Spacer(),
-                      CustomBottomNavigationBarItem(
-                        iconName: 'icon-keranjang',
-                        title: 'Keranjang',
-                        color: Palette.grey,
-                        onPressed: () {},
-                      ),
-                      CustomBottomNavigationBarItem(
-                        iconName: 'icon-akun',
-                        title: 'Akun',
-                        color: Palette.grey,
-                        onPressed: () {},
-                      ),
-                    ],
-                  ),
+                  child: Row(children: items),
                 ),
               ),
             ),

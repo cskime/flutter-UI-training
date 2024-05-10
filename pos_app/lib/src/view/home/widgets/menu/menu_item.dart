@@ -1,26 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pos_app/design/palette.dart';
 import 'package:pos_app/design/svg_icon_provider.dart';
-
-enum Menu {
-  penjualan,
-  penyimpanan,
-  pelanggan,
-  pegawai,
-  produk,
-  laporan;
-
-  String get title => switch (this) {
-        Menu.penjualan => 'Penjualan',
-        Menu.penyimpanan => 'Penyimpanan',
-        Menu.pelanggan => 'Pelanggan',
-        Menu.pegawai => 'Pegawai',
-        Menu.produk => 'Produk',
-        Menu.laporan => 'Laporan',
-      };
-
-  String get iconName => 'icon-${title.toLowerCase()}';
-}
+import 'package:pos_app/src/view/home/widgets/menu/menu.dart';
 
 class MenuItem extends StatelessWidget {
   const MenuItem({super.key, required this.menu});

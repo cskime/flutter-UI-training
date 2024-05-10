@@ -20,6 +20,7 @@ class CustomBottomNavigationBarItem extends StatelessWidget {
     return Expanded(
       child: GestureDetector(
         onTap: onPressed,
+        behavior: HitTestBehavior.opaque, // 빈공간 터치
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
