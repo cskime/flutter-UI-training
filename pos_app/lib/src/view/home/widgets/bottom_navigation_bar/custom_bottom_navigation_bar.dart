@@ -39,6 +39,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
     final itemWidth = mediaQuery.size.width / 5;
     final bottomPadding = mediaQuery.viewPadding.bottom;
     return Column(
+      mainAxisSize: MainAxisSize.min, // Scaffold에 넣을 때 화면에 꽉 차게 나오는 현상 방지
       children: [
         Stack(
           children: [

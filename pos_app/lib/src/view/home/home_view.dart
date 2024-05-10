@@ -24,6 +24,7 @@ class _HomeViewState extends State<HomeView> {
       backgroundColor: Colors.white,
       appBar: _appBar,
       body: _body,
+      bottomNavigationBar: const CustomBottomNavigationBar(),
     );
   }
 
@@ -124,8 +125,6 @@ class _HomeViewState extends State<HomeView> {
             ],
           ),
         ),
-        const Spacer(),
-        const CustomBottomNavigationBar()
       ],
     );
   }
