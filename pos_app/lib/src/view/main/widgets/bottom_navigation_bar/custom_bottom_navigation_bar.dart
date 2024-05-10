@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:pos_app/design/palette.dart';
 import 'package:pos_app/design/svg_icon_provider.dart';
-import 'package:pos_app/src/view/home/widgets/bottom_navigation_bar/custom_bottom_navigation_bar_item.dart';
-import 'package:pos_app/src/view/home/widgets/bottom_navigation_bar/custom_navigation_item.dart';
+import 'package:pos_app/src/view/main/widgets/bottom_navigation_bar/custom_bottom_navigation_bar_item.dart';
+import 'package:pos_app/src/view/main/widgets/bottom_navigation_bar/custom_navigation_item.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
-  const CustomBottomNavigationBar({super.key});
+  const CustomBottomNavigationBar({
+    super.key,
+    required this.onPressed,
+  });
+
+  final void Function(CustomNavigationItem item) onPressed;
 
   @override
   State<CustomBottomNavigationBar> createState() =>
@@ -26,6 +31,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         color: isSelected ? Palette.primary : Palette.grey,
         onPressed: () => setState(() {
           currentIndex = itemIndex;
+          widget.onPressed(item);
         }),
       );
     }).toList();

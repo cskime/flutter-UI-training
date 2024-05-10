@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pos_app/design/palette.dart';
 import 'package:pos_app/design/svg_icon_provider.dart';
-import 'package:pos_app/src/view/home/widgets/menu/menu.dart';
+import 'package:pos_app/src/view/beranda/widgets/menu/menu.dart';
 
 class MenuItem extends StatelessWidget {
   const MenuItem({super.key, required this.menu});
