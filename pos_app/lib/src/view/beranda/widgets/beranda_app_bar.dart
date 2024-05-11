@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:pos_app/design/components/alert_button/alert_button.dart';
 import 'package:pos_app/design/palette.dart';
-import 'package:pos_app/design/svg_icon_provider.dart';
-import 'package:pos_app/src/view/beranda/widgets/alert_dot.dart';
 
 class BerandaAppBar extends StatelessWidget {
   const BerandaAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Column(
+          Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
@@ -33,16 +32,7 @@ class BerandaAppBar extends StatelessWidget {
               ),
             ],
           ),
-          Stack(
-            children: [
-              SvgIconProvider.icon('alert', color: Palette.text),
-              const Positioned(
-                top: 3,
-                right: 4,
-                child: AlertDot(),
-              )
-            ],
-          )
+          AlertButton(),
         ],
       ),
     );
