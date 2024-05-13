@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pos_app/design/palette.dart';
+import 'package:pos_app/design/svg_icon_provider.dart';
 
 class ProfileCard extends StatelessWidget {
   const ProfileCard({super.key});
@@ -17,14 +18,10 @@ class ProfileCard extends StatelessWidget {
       child: Center(
         child: Column(
           children: [
-            const CircleAvatar(
-              backgroundColor: Color(0xfff0f0f0),
+            CircleAvatar(
+              backgroundColor: const Color(0xfff0f0f0),
               radius: 50,
-              child: Icon(
-                Icons.person_outline,
-                color: Color(0xff7C7C7C),
-                size: 32,
-              ),
+              child: SvgIconProvider.icon('icon-user-placeholder'),
             ),
             const SizedBox(height: 13),
             Text(
