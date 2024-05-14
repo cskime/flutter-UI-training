@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pos_app/design/palette.dart';
 import 'package:pos_app/src/view/base/base_app_bar.dart';
 import 'package:pos_app/src/view/base/base_screen.dart';
+import 'package:pos_app/src/view/rekap_kas/widgets/chart/chart_view.dart';
 import 'package:pos_app/src/view/rekap_kas/widgets/user_detail_button.dart';
 
 class RekapKasView extends StatelessWidget {
@@ -28,9 +29,11 @@ class RekapKasView extends StatelessWidget {
                 ),
                 SizedBox(height: 18),
                 UserDetailButton(),
+                SizedBox(height: 20),
+                ChartView(),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
