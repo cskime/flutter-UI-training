@@ -20,7 +20,7 @@ class ChartView extends StatelessWidget {
         ],
       ),
       child: Padding(
-        padding: const EdgeInsets.all(16).copyWith(top: 12),
+        padding: const EdgeInsets.all(12).copyWith(bottom: 12),
         child: Column(
           children: [
             const Text(
@@ -41,8 +41,11 @@ class ChartView extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 8),
-            CustomPaint(
-              foregroundPainter: ChartPainter(),
+            AspectRatio(
+              aspectRatio: 319 / 223,
+              child: CustomPaint(
+                painter: ChartPainter(),
+              ),
             ),
           ],
         ),
