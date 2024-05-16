@@ -50,21 +50,18 @@ class ChartPainter extends CustomPainter {
     double dx = gridSize.width / (countX - 1);
     for (int index = 0; index < countX; index++) {
       final start = Offset(x + index * dx, y);
-      final end =
-          Offset(start.dx, gridSize.height + countY); // horizontal line 개수만큼 보정
+      // horizontal line 개수만큼 보정
+      final end = Offset(start.dx, gridSize.height + countY);
       canvas.drawLine(start, end, paint);
-
-      final text = valuesX[index];
-      final textSpan = TextSpan(text: text, style: textStyle);
-      final textPainter = TextPainter(
-        text: textSpan,
-        textDirection: TextDirection.ltr,
-      )..layout();
-      final textOffset = Offset(
-        start.dx - textPainter.width / 2,
-        end.dy + 10,
+      _drawText(
+        canvas,
+        text: valuesX[index],
+        textStyle: textStyle,
+        offsetBuilder: (size) => Offset(
+          start.dx - size.width / 2,
+          end.dy + 10,
+        ),
       );
-      textPainter.paint(canvas, textOffset);
     }
 
     // Draw horizontal
@@ -73,19 +70,33 @@ class ChartPainter extends CustomPainter {
       final start = Offset(x, y + index * dy);
       final end = Offset(start.dx + gridSize.width, start.dy);
       canvas.drawLine(start, end, paint);
-
       final text = valuesY.reversed.toList()[index];
-      final textSpan = TextSpan(text: text, style: textStyle);
-      final textPainter = TextPainter(
-        text: textSpan,
-        textDirection: TextDirection.ltr,
-      )..layout();
-      final textOffset = Offset(
-        start.dx - textPainter.width - 10,
-        start.dy - textPainter.height / 2,
+      _drawText(
+        canvas,
+        text: text,
+        textStyle: textStyle,
+        offsetBuilder: (size) => Offset(
+          start.dx - size.width - 10,
+          start.dy - size.height / 2,
+        ),
       );
-      textPainter.paint(canvas, textOffset);
     }
+  }
+
+  void _drawText(
+    Canvas canvas, {
+    required String text,
+    required TextStyle textStyle,
+    required Offset Function(Size) offsetBuilder,
+  }) {
+    final painter = TextPainter(
+      text: TextSpan(text: text, style: textStyle),
+      textDirection: TextDirection.ltr,
+    )..layout();
+    Offset textOffset = offsetBuilder(painter.size);
+    painter
+      ..paint(canvas, textOffset)
+      ..dispose();
   }
 
   @override
