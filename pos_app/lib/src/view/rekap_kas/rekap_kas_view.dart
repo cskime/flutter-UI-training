@@ -30,7 +30,12 @@ class RekapKasView extends StatelessWidget {
                 SizedBox(height: 18),
                 UserDetailButton(),
                 SizedBox(height: 20),
-                ChartView(),
+                ChartView(
+                  datas: [
+                    [100, 500, 800, 50, 750, 580, 760],
+                    [800, 20, 500, 630, 830, 380, 840],
+                  ],
+                ),
               ],
             ),
           ),

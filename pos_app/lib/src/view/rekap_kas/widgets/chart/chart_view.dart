@@ -3,7 +3,12 @@ import 'package:pos_app/design/palette.dart';
 import 'package:pos_app/src/view/rekap_kas/widgets/chart/chart_painter.dart';
 
 class ChartView extends StatelessWidget {
-  const ChartView({super.key});
+  const ChartView({
+    super.key,
+    required this.datas,
+  });
+
+  final List<List<double>> datas;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +49,7 @@ class ChartView extends StatelessWidget {
             AspectRatio(
               aspectRatio: 319 / 223,
               child: CustomPaint(
-                painter: ChartPainter(),
+                painter: ChartPainter(datas: datas),
               ),
             ),
           ],
