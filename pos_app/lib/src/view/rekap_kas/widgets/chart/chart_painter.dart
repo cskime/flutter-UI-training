@@ -148,18 +148,17 @@ class ChartPainter extends CustomPainter {
     List<Offset> yOffsets,
     Size gridSize,
   ) {
-    final dotPaint = Paint()
-      ..style = PaintingStyle.fill
-      ..color = Palette.primary;
-    const radius = 4.0;
-
-    final pathPaint = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 2
-      ..color = Palette.primary;
     final pathSegmentWidth = (gridSize.width / xOffsets.length) / 1.8;
 
+    // 첫 번째 data graph만 primary color를 사용하기 위한 임시 flag
+    bool isFirstPrimary = true;
     for (List<double> gridDatas in datas) {
+      Color color = isFirstPrimary ? Palette.primary : const Color(0xFFC5C6F9);
+
+      final dotPaint = Paint()
+        ..style = PaintingStyle.fill
+        ..color = color;
+      const radius = 4.0;
       List<Offset> points = [];
       for (int index = 0; index < xCount; index++) {
         final data = gridDatas[index];
@@ -174,6 +173,10 @@ class ChartPainter extends CustomPainter {
         points.add(center);
       }
 
+      final pathPaint = Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 2
+        ..color = color;
       final path = Path()..moveTo(points.first.dx, points.first.dy);
       for (int index = 1; index < points.length; index++) {
         final currentPoint = points[index - 1];
@@ -192,6 +195,8 @@ class ChartPainter extends CustomPainter {
         );
       }
       canvas.drawPath(path, pathPaint);
+
+      isFirstPrimary = false;
     }
   }
 
