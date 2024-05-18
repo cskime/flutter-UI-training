@@ -28,7 +28,7 @@
 
 ### Drawing chart using `CustomPaint` and `CustomPainter`
 
-| ([Source code](./lib/src/view/rekap_kas/widgets/chart/chart_painter.dart))
+> ([Source code](./lib/src/view/rekap_kas/widgets/chart/chart_painter.dart))
 
 - I used the `CustomPaint` widget and `CustomPainter` subclass to draw chart with curved line graph.
 - `CustomPaint` widget
