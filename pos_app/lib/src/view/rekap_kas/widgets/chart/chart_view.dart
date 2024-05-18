@@ -46,6 +46,29 @@ class ChartView extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 8),
+            SizedBox(
+              height: 32,
+              child: Wrap(
+                spacing: 10,
+                children: ['Harian', 'Mingguan', 'Bulanan', 'Tahunan'].map(
+                  (title) {
+                    bool shouldHighlighted = title == 'Mingguan';
+                    Color color =
+                        shouldHighlighted ? Palette.primary : Palette.text;
+                    FontWeight weight =
+                        shouldHighlighted ? FontWeight.w600 : FontWeight.w400;
+                    return Text(
+                      title,
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: weight,
+                        color: color,
+                      ),
+                    );
+                  },
+                ).toList(),
+              ),
+            ),
             AspectRatio(
               aspectRatio: 319 / 223,
               child: CustomPaint(

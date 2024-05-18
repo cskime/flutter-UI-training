@@ -36,10 +36,57 @@ class RekapKasView extends StatelessWidget {
                     [800, 10, 500, 660, 850, 350, 880],
                   ],
                 ),
+                SizedBox(height: 20),
+                Row(
+                  children: [
+                    _ColoredContainer(
+                      title: 'Uang Masuk',
+                      color: Color(0xFF56E532),
+                    ),
+                    SizedBox(width: 15),
+                    _ColoredContainer(
+                      title: 'Uang Keluar',
+                      color: Color(0xFFFF3838),
+                    ),
+                  ],
+                )
               ],
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _ColoredContainer extends StatelessWidget {
+  const _ColoredContainer({
+    required this.title,
+    required this.color,
+  });
+
+  final String title;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Container(
+        height: 56,
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(4),
+        ),
+        child: Center(
+          child: Text(
+            title,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 17,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
       ),
     );
   }
