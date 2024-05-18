@@ -14,6 +14,9 @@ class ChartPainter extends CustomPainter {
   final xValues = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   final List<String> yValues;
 
+  static const xCount = 7;
+  static const yCount = 6;
+
   static List<String> _calculateYValues(List<List<double>> datas) {
     final maxData = datas.expand((element) => element).reduce(max);
     final numberOfDigits = maxData.toInt().toString().length;
@@ -21,8 +24,8 @@ class ChartPainter extends CustomPainter {
     var maxValue = maxData / divider;
     final offset = 2 - maxValue % 2;
     maxValue = (maxValue + offset) * divider;
-    final unit = maxValue / 5;
-    return List.generate(6, (index) => '${(index * unit).toInt()}');
+    final unit = maxValue / (yCount - 1);
+    return List.generate(yCount, (index) => '${(index * unit).toInt()}');
   }
 
   final coordinatePadding = const EdgeInsets.only(
@@ -34,10 +37,19 @@ class ChartPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    _drawGrid(canvas, size);
+    final gridSize = Size(
+      size.width - coordinatePadding.horizontal,
+      size.height - coordinatePadding.vertical,
+    );
+    final (xOffsets, yOffsets) = _drawGrid(canvas, gridSize);
+    _drawTexts(canvas, xValues, yValues, xOffsets, yOffsets);
+    _drawGraph(canvas, datas, xOffsets, yOffsets, gridSize);
   }
 
-  void _drawGrid(Canvas canvas, Size size) {
+  (List<Offset>, List<Offset>) _drawGrid(Canvas canvas, Size gridSize) {
+    List<Offset> xOffsets = [];
+    List<Offset> yOffsets = [];
+
     final paint = Paint()
       ..color = const Color(0xfff0f0f0)
       ..strokeWidth = 1;
@@ -47,21 +59,9 @@ class ChartPainter extends CustomPainter {
       coordinatePadding.left,
       coordinatePadding.top,
     );
-    int xCount = xValues.length;
     int yCount = yValues.length;
-    final gridSize = Size(
-      size.width - coordinatePadding.horizontal,
-      size.height - coordinatePadding.vertical,
-    );
     var x = gridOrigin.x;
     var y = gridOrigin.y;
-
-    // Text metrics
-    const textStyle = TextStyle(
-      color: Color(0xffa3a3a3),
-      fontSize: 10,
-      height: 1,
-    );
 
     // Draw vertical
     double dx = gridSize.width / (xCount - 1);
@@ -70,15 +70,7 @@ class ChartPainter extends CustomPainter {
       // horizontal line 개수만큼 보정
       final end = Offset(start.dx, gridSize.height + yCount);
       canvas.drawLine(start, end, paint);
-      _drawText(
-        canvas,
-        text: xValues[index],
-        textStyle: textStyle,
-        offsetBuilder: (size) => Offset(
-          start.dx - size.width / 2,
-          end.dy + 10,
-        ),
-      );
+      xOffsets.add(end);
     }
 
     // Draw horizontal
@@ -87,19 +79,50 @@ class ChartPainter extends CustomPainter {
       final start = Offset(x, y + index * dy);
       final end = Offset(start.dx + gridSize.width, start.dy);
       canvas.drawLine(start, end, paint);
-      final text = yValues.reversed.toList()[index];
+      yOffsets.add(start);
+    }
+
+    return (xOffsets, yOffsets);
+  }
+
+  void _drawTexts(
+    Canvas canvas,
+    List<String> xValues,
+    List<String> yValues,
+    List<Offset> xOffsets,
+    List<Offset> yOffsets,
+  ) {
+    const textStyle = TextStyle(
+      color: Color(0xffa3a3a3),
+      fontSize: 10,
+      height: 1,
+    );
+
+    for (int index = 0; index < xCount; index++) {
+      Offset xOffset = xOffsets[index];
       _drawText(
         canvas,
-        text: text,
+        text: xValues[index],
         textStyle: textStyle,
         offsetBuilder: (size) => Offset(
-          start.dx - size.width - 10,
-          start.dy - size.height / 2,
+          xOffset.dx - size.width / 2,
+          xOffset.dy + 10,
         ),
       );
     }
 
-    _drawDot(canvas, xCount, yCount, x, y, dx, dy, gridSize);
+    for (int index = 0; index < yCount; index++) {
+      Offset yOffset = yOffsets[index];
+      _drawText(
+        canvas,
+        text: yValues.reversed.toList()[index],
+        textStyle: textStyle,
+        offsetBuilder: (size) => Offset(
+          yOffset.dx - size.width - 10,
+          yOffset.dy - size.height / 2,
+        ),
+      );
+    }
   }
 
   void _drawText(
@@ -118,29 +141,57 @@ class ChartPainter extends CustomPainter {
       ..dispose();
   }
 
-  void _drawDot(
+  void _drawGraph(
     Canvas canvas,
-    int xCount,
-    int yCount,
-    double x,
-    double y,
-    double dx,
-    double dy,
+    List<List<double>> datas,
+    List<Offset> xOffsets,
+    List<Offset> yOffsets,
     Size gridSize,
   ) {
-    for (int indexX = 0; indexX < xCount; indexX++) {
-      for (int indexY = 0; indexY < yCount; indexY++) {
-        final paint = Paint()
-          ..style = PaintingStyle.fill
-          ..color = Palette.primary;
-        const radius = 4.0;
+    final dotPaint = Paint()
+      ..style = PaintingStyle.fill
+      ..color = Palette.primary;
+    const radius = 4.0;
+
+    final pathPaint = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2
+      ..color = Palette.primary;
+    final pathSegmentWidth = (gridSize.width / xOffsets.length) / 1.8;
+
+    for (List<double> gridDatas in datas) {
+      List<Offset> points = [];
+      for (int index = 0; index < xCount; index++) {
+        final data = gridDatas[index];
+        final x = xOffsets[index].dx;
+        final y = yOffsets[0].dy;
         final yUnit = gridSize.height / double.parse(yValues.last);
         final center = Offset(
           x,
-          y + (double.parse(yValues.last) - 500) * yUnit,
+          y + (double.parse(yValues.last) - data) * yUnit,
         );
-        canvas.drawCircle(center, radius, paint);
+        canvas.drawCircle(center, radius, dotPaint);
+        points.add(center);
       }
+
+      final path = Path()..moveTo(points.first.dx, points.first.dy);
+      for (int index = 1; index < points.length; index++) {
+        final currentPoint = points[index - 1];
+        final nextPoint = points[index];
+        final controlPoint1 =
+            Offset(currentPoint.dx + pathSegmentWidth, currentPoint.dy);
+        final controlPoint2 =
+            Offset(nextPoint.dx - pathSegmentWidth, nextPoint.dy);
+        path.cubicTo(
+          controlPoint1.dx,
+          controlPoint1.dy,
+          controlPoint2.dx,
+          controlPoint2.dy,
+          nextPoint.dx,
+          nextPoint.dy,
+        );
+      }
+      canvas.drawPath(path, pathPaint);
     }
   }
 

@@ -33,7 +33,7 @@ class RekapKasView extends StatelessWidget {
                 ChartView(
                   datas: [
                     [100, 500, 800, 50, 750, 580, 760],
-                    [800, 20, 500, 630, 830, 380, 840],
+                    // [800, 20, 500, 630, 830, 380, 840],
                   ],
                 ),
               ],
