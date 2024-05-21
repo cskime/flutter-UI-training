@@ -56,6 +56,22 @@
   - `Canvas.drawCircle` to draw dots
   - `Canvas.drawPath` to draw cubic bezier path
 
+### Customize TextField
+
+- The `TextField` widget is based on Material design system.
+- To make custom input field widget, the default Material design style should be erased.
+- To erase a default style, uses `InputDecoration`.
+  ```dart
+  TextField(
+    decoration: InputDecoratio (
+      border: InputBorder.none, // erase border
+      isDense: true, // erase vertical default padding
+    ),
+    cursorColor: Colors.black, // change cursor color
+    style: TextStyle(color: Colors.blue), // change text color
+  );
+  ```
+
 ## [Packages](./pubspec.yaml)
 
 - [`flutter_native_splash`](https://pub.dev/packages/flutter_native_splash) package for splash screen.

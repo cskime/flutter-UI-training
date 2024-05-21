@@ -26,7 +26,6 @@ class KategoriSearchBar extends StatelessWidget {
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: 'Cari Barang',
-                  contentPadding: EdgeInsets.zero,
                   isDense: true,
                 ),
                 style: TextStyle(fontSize: 12),
