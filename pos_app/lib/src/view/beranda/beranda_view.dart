@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:pos_app/src/utils/build_context_navigator_ext.dart';
 import 'package:pos_app/src/view/base/base_screen.dart';
-import 'package:pos_app/src/view/beranda/penjualan/penjulan_kategori_view.dart';
+import 'package:pos_app/src/view/beranda/penjualan/kategori/penjulan_kategori_view.dart';
 import 'package:pos_app/src/view/beranda/widgets/beranda_app_bar.dart';
 import 'package:pos_app/src/view/beranda/widgets/image_carousel.dart';
 import 'package:pos_app/src/view/beranda/widgets/menu/menu.dart';

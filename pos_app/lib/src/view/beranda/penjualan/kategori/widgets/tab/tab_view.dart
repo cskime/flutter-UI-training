@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pos_app/src/view/beranda/penjualan/widgets/tab/tab_item.dart';
-import 'package:pos_app/src/view/beranda/penjualan/widgets/tab/tab_item_view.dart';
+import 'package:pos_app/src/view/beranda/penjualan/kategori/widgets/tab/tab_item.dart';
+import 'package:pos_app/src/view/beranda/penjualan/kategori/widgets/tab/tab_item_view.dart';
 
 class TabView extends StatefulWidget {
   const TabView({super.key});
