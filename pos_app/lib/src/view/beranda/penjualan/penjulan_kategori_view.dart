@@ -17,6 +17,7 @@ class PenjulanKategoriView extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: BaseScreen(
+        safeAreaBottom: false,
         child: Column(
           children: [
             BaseAppBar(

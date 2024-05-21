@@ -16,14 +16,22 @@ class SeparatedColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (children.isEmpty) {
+      return Column(
+        mainAxisAlignment: mainAxisAlignment,
+        mainAxisSize: mainAxisSize,
+        children: children,
+      );
+    }
+
     final spacers = List.generate(
       children.length - 1,
       (index) => SizedBox(height: spacing),
     );
-    var separatedChildren = <Widget>[];
+    var separatedChildren = <Widget>[children.first];
 
     for (int index = 0; index < children.length - 1; index++) {
-      separatedChildren.addAll([children[index + 1], spacers[index]]);
+      separatedChildren.addAll([spacers[index], children[index + 1]]);
     }
 
     return Column(
