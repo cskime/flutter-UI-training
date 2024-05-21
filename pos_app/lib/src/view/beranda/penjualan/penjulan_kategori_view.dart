@@ -3,6 +3,7 @@ import 'package:pos_app/design/svg_icon_provider.dart';
 import 'package:pos_app/src/utils/build_context_navigator_ext.dart';
 import 'package:pos_app/src/view/base/base_app_bar.dart';
 import 'package:pos_app/src/view/base/base_screen.dart';
+import 'package:pos_app/src/view/beranda/penjualan/widgets/kategori_search_bar.dart';
 import 'package:pos_app/src/view/beranda/penjualan/widgets/tab/tab_view.dart';
 
 class PenjulanKategoriView extends StatelessWidget {
@@ -24,6 +25,10 @@ class PenjulanKategoriView extends StatelessWidget {
               trailing: SvgIconProvider.icon('icon-cart'),
             ),
             const TabView(),
+            const Padding(
+              padding: EdgeInsets.all(16),
+              child: KategoriSearchBar(),
+            )
           ],
         ),
       ),
