@@ -5,6 +5,7 @@ import 'package:pos_app/src/view/base/base_screen.dart';
 import 'package:pos_app/src/view/beranda/penjualan/barang/model/barang_item.dart';
 import 'package:pos_app/src/view/beranda/penjualan/barang/widgets/barang_list_item_view.dart';
 import 'package:pos_app/src/view/beranda/widgets/penjualan_search_bar.dart';
+import 'package:pos_app/src/view/common/back_button.dart';
 
 class PenjulanBarangView extends StatelessWidget {
   const PenjulanBarangView({super.key});
@@ -23,7 +24,7 @@ class PenjulanBarangView extends StatelessWidget {
           children: [
             BaseAppBar(
               title: 'Penjualan',
-              leading: const BackButton(),
+              leading: const POSBackButton(),
               trailing: SvgIconProvider.icon('icon-filter'),
             ),
             const Padding(

@@ -9,6 +9,7 @@ import 'package:pos_app/src/view/beranda/penjualan/kategori/widgets/list/kategor
 import 'package:pos_app/src/view/beranda/penjualan/kategori/widgets/list/kategori_list_item_view.dart';
 import 'package:pos_app/src/view/beranda/penjualan/kategori/widgets/tab/tab_view.dart';
 import 'package:pos_app/src/view/beranda/widgets/penjualan_search_bar.dart';
+import 'package:pos_app/src/view/common/back_button.dart';
 
 class PenjulanKategoriView extends StatelessWidget {
   const PenjulanKategoriView({super.key});
@@ -23,7 +24,7 @@ class PenjulanKategoriView extends StatelessWidget {
           children: [
             BaseAppBar(
               title: 'Kategori',
-              leading: const BackButton(),
+              leading: const POSBackButton(),
               trailing: SvgIconProvider.icon('icon-cart'),
             ),
             const TabView(),
