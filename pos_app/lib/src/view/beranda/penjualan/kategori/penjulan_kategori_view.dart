@@ -5,10 +5,10 @@ import 'package:pos_app/src/utils/separated_column.dart';
 import 'package:pos_app/src/view/base/base_app_bar.dart';
 import 'package:pos_app/src/view/base/base_screen.dart';
 import 'package:pos_app/src/view/beranda/penjualan/barang/penjulan_barang_view.dart';
-import 'package:pos_app/src/view/beranda/widgets/list/kategori_list_item.dart';
-import 'package:pos_app/src/view/beranda/widgets/list/kategori_list_item_view.dart';
-import 'package:pos_app/src/view/beranda/widgets/penjualan_search_bar.dart';
+import 'package:pos_app/src/view/beranda/penjualan/kategori/widgets/list/kategori_list_item.dart';
+import 'package:pos_app/src/view/beranda/penjualan/kategori/widgets/list/kategori_list_item_view.dart';
 import 'package:pos_app/src/view/beranda/penjualan/kategori/widgets/tab/tab_view.dart';
+import 'package:pos_app/src/view/beranda/widgets/penjualan_search_bar.dart';
 
 class PenjulanKategoriView extends StatelessWidget {
   const PenjulanKategoriView({super.key});
