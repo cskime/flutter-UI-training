@@ -11,7 +11,7 @@ class RekapKasView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const BaseScreen(
-      child: Column(
+      body: Column(
         children: [
           BaseAppBar(title: 'Rekap Kas'),
           Padding(

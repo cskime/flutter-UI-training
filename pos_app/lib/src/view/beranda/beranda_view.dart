@@ -21,7 +21,7 @@ class _BerandaViewState extends State<BerandaView> {
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
-      child: Column(
+      body: Column(
         children: [
           const BerandaAppBar(),
           const SizedBox(height: 12),

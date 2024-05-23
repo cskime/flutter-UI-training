@@ -12,7 +12,7 @@ class AkunView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
-      child: Column(
+      body: Column(
         children: [
           const BaseAppBar(
             title: 'Akun Saya',

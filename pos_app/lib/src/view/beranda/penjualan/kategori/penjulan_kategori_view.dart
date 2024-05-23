@@ -20,13 +20,13 @@ class PenjulanKategoriView extends StatelessWidget {
       backgroundColor: Colors.white,
       body: BaseScreen(
         safeAreaBottom: false,
-        child: Column(
+        header: BaseAppBar(
+          title: 'Kategori',
+          leading: const POSBackButton(),
+          trailing: SvgIconProvider.icon('icon-cart'),
+        ),
+        body: Column(
           children: [
-            BaseAppBar(
-              title: 'Kategori',
-              leading: const POSBackButton(),
-              trailing: SvgIconProvider.icon('icon-cart'),
-            ),
             const TabView(),
             const Padding(
               padding: EdgeInsets.all(16),

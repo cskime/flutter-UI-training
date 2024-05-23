@@ -20,13 +20,13 @@ class PenjulanBarangView extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: BaseScreen(
-        child: Column(
+        header: BaseAppBar(
+          title: 'Penjualan',
+          leading: const POSBackButton(),
+          trailing: SvgIconProvider.icon('icon-filter'),
+        ),
+        body: Column(
           children: [
-            BaseAppBar(
-              title: 'Penjualan',
-              leading: const POSBackButton(),
-              trailing: SvgIconProvider.icon('icon-filter'),
-            ),
             const Padding(
               padding: EdgeInsets.all(16),
               child: PenjualanSearchBar(),
