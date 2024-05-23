@@ -4,6 +4,8 @@ import 'package:pos_app/src/view/base/base_app_bar.dart';
 import 'package:pos_app/src/view/base/base_screen.dart';
 import 'package:pos_app/src/view/beranda/penjualan/barang/model/barang_item.dart';
 import 'package:pos_app/src/view/beranda/penjualan/barang/widgets/barang_list_item_view.dart';
+import 'package:pos_app/src/view/beranda/penjualan/barang/widgets/barang_masuk_button.dart';
+import 'package:pos_app/src/view/beranda/penjualan/barang/widgets/barang_total_count_label.dart';
 import 'package:pos_app/src/view/beranda/widgets/penjualan_search_bar.dart';
 import 'package:pos_app/src/view/common/back_button.dart';
 
@@ -47,6 +49,19 @@ class PenjulanBarangView extends StatelessWidget {
               ),
             )
           ],
+        ),
+        footer: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Row(
+            children: [
+              const BarangTotalCountLabel(count: 0),
+              const SizedBox(width: 16),
+              Expanded(
+                  child: BarangMasukButton(
+                onPressed: () {},
+              )),
+            ],
+          ),
         ),
       ),
     );
