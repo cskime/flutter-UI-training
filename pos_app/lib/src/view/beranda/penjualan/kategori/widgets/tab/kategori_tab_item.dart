@@ -1,4 +1,4 @@
-enum TabItem {
+enum KategoriTabItem {
   all,
   cutline,
   defender,

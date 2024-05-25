@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:pos_app/src/view/beranda/penjualan/kategori/widgets/tab/tab_item.dart';
-import 'package:pos_app/src/view/beranda/penjualan/kategori/widgets/tab/tab_item_view.dart';
+import 'package:pos_app/src/view/beranda/penjualan/kategori/widgets/tab/kategori_tab_item.dart';
+import 'package:pos_app/src/view/beranda/penjualan/kategori/widgets/tab/kategori_tab_item_view.dart';
 
-class TabView extends StatefulWidget {
-  const TabView({super.key});
+class KategoriTabView extends StatefulWidget {
+  const KategoriTabView({super.key});
 
   @override
-  State<TabView> createState() => _TabViewState();
+  State<KategoriTabView> createState() => _KategoriTabViewState();
 }
 
-class _TabViewState extends State<TabView> {
-  TabItem currentItem = TabItem.all;
+class _KategoriTabViewState extends State<KategoriTabView> {
+  KategoriTabItem currentItem = KategoriTabItem.all;
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +19,9 @@ class _TabViewState extends State<TabView> {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Wrap(
         spacing: 8,
-        children: TabItem.values
+        children: KategoriTabItem.values
             .map(
-              (item) => TabItemView(
+              (item) => KategoriTabItemView(
                 item: item,
                 isSelected: item == currentItem,
                 onPressed: (item) => setState(() {

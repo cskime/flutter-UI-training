@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:pos_app/design/palette.dart';
-import 'package:pos_app/src/view/beranda/penjualan/barang/model/barang_item.dart';
-import 'package:pos_app/src/view/beranda/penjualan/barang/widgets/barang_counter.dart';
+import 'package:pos_app/models/product.dart';
+import 'package:pos_app/src/view/beranda/penjualan/barang/widgets/barang_product_counter.dart';
 
-class BarangListItemView extends StatefulWidget {
-  const BarangListItemView({
+class BarangProductCardView extends StatefulWidget {
+  const BarangProductCardView({
     super.key,
-    required this.item,
+    required this.product,
     required this.width,
+    required this.onCountChanged,
   });
 
-  final BarangItem item;
+  final Product product;
   final double width;
+  final void Function(int count) onCountChanged;
 
   @override
-  State<BarangListItemView> createState() => _BarangListItemViewState();
+  State<BarangProductCardView> createState() => _BarangProductCardViewState();
 }
 
-class _BarangListItemViewState extends State<BarangListItemView> {
+class _BarangProductCardViewState extends State<BarangProductCardView> {
   int currentCount = 0;
 
   @override
@@ -50,7 +52,7 @@ class _BarangListItemViewState extends State<BarangListItemView> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  widget.item.category,
+                  widget.product.category,
                   style: const TextStyle(
                     fontSize: 8,
                     fontWeight: FontWeight.w500,
@@ -58,7 +60,7 @@ class _BarangListItemViewState extends State<BarangListItemView> {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  widget.item.title,
+                  widget.product.title,
                   style: const TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w600,
@@ -66,7 +68,7 @@ class _BarangListItemViewState extends State<BarangListItemView> {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  '${widget.item.description}\n',
+                  '${widget.product.description}\n',
                   style: const TextStyle(
                     color: Color(0xFF60626E),
                     fontSize: 8,
@@ -75,17 +77,18 @@ class _BarangListItemViewState extends State<BarangListItemView> {
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  'Rp ${widget.item.rp}',
+                  'Rp ${widget.product.rp}',
                   style: const TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
                 const SizedBox(height: 15),
-                BarangeCounter(
+                BarangProductCounter(
                   currentCount: currentCount,
                   onPressed: (count) => setState(() {
                     currentCount = count;
+                    widget.onCountChanged(currentCount);
                   }),
                 ),
               ],

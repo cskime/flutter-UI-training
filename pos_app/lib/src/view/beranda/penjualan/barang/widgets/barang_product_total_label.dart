@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pos_app/design/palette.dart';
 
-class BarangTotalCountLabel extends StatelessWidget {
-  const BarangTotalCountLabel({
+class BarangProductTotalLabel extends StatelessWidget {
+  const BarangProductTotalLabel({
     super.key,
     required this.count,
   });

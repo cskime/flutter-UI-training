@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pos_app/design/palette.dart';
 import 'package:pos_app/src/utils/separated_row.dart';
 
-class BarangeCounter extends StatelessWidget {
-  const BarangeCounter({
+class BarangProductCounter extends StatelessWidget {
+  const BarangProductCounter({
     super.key,
     this.currentCount = 0,
     required this.onPressed,

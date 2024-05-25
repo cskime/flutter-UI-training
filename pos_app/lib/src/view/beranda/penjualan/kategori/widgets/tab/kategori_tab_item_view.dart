@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:pos_app/design/palette.dart';
-import 'package:pos_app/src/view/beranda/penjualan/kategori/widgets/tab/tab_item.dart';
+import 'package:pos_app/src/view/beranda/penjualan/kategori/widgets/tab/kategori_tab_item.dart';
 
-class TabItemView extends StatelessWidget {
-  const TabItemView({
+class KategoriTabItemView extends StatelessWidget {
+  const KategoriTabItemView({
     super.key,
     required this.item,
     required this.isSelected,
     required this.onPressed,
   });
 
-  final TabItem item;
+  final KategoriTabItem item;
   final bool isSelected;
-  final void Function(TabItem item) onPressed;
+  final void Function(KategoriTabItem item) onPressed;
 
   FontWeight get fontWeight => isSelected ? FontWeight.w500 : FontWeight.w400;
   Color get fontColor => isSelected ? Colors.white : Palette.text;

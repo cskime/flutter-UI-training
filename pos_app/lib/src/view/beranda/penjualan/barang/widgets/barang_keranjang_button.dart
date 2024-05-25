@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pos_app/design/palette.dart';
 
-class BarangMasukButton extends StatefulWidget {
-  const BarangMasukButton({
+class BarangKeranjangButton extends StatefulWidget {
+  const BarangKeranjangButton({
     super.key,
     required this.onPressed,
   });
@@ -10,10 +10,10 @@ class BarangMasukButton extends StatefulWidget {
   final void Function() onPressed;
 
   @override
-  State<BarangMasukButton> createState() => _BarangMasukButtonState();
+  State<BarangKeranjangButton> createState() => _BarangKeranjangButtonState();
 }
 
-class _BarangMasukButtonState extends State<BarangMasukButton> {
+class _BarangKeranjangButtonState extends State<BarangKeranjangButton> {
   bool _isSelected = false;
 
   void updateSelectedState() {
