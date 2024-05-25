@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pos_app/models/product.dart';
 
-class ProductInheritedWidget extends InheritedWidget {
-  const ProductInheritedWidget({
+class ProductsProvider extends InheritedWidget {
+  const ProductsProvider({
     super.key,
     required super.child,
     required this.countOfProduct,
@@ -18,11 +18,11 @@ class ProductInheritedWidget extends InheritedWidget {
   int get numberOfProducts => countOfProduct.entries.length;
 
   @override
-  bool updateShouldNotify(covariant ProductInheritedWidget oldWidget) {
+  bool updateShouldNotify(covariant ProductsProvider oldWidget) {
     return countOfProduct != oldWidget.countOfProduct;
   }
 
-  static ProductInheritedWidget? of(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<ProductInheritedWidget>();
+  static ProductsProvider? of(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<ProductsProvider>();
   }
 }

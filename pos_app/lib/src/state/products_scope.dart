@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pos_app/models/product.dart';
-import 'package:pos_app/src/state/product_inherited_widget.dart';
+import 'package:pos_app/src/state/products_provider.dart';
 
 class ProductsScope extends StatefulWidget {
   const ProductsScope({
@@ -32,7 +32,7 @@ class _ProductsScopeState extends State<ProductsScope> {
 
   @override
   Widget build(BuildContext context) {
-    return ProductInheritedWidget(
+    return ProductsProvider(
       countOfProduct: countOfProduct,
       onCountChanged: onCountChanged,
       child: widget.child,
