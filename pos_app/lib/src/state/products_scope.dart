@@ -15,7 +15,7 @@ class ProductsScope extends StatefulWidget {
 }
 
 class _ProductsScopeState extends State<ProductsScope> {
-  final Map<Product, int> countOfProduct = {};
+  Map<Product, int> countOfProduct = {};
 
   void onCountChanged({
     required Product product,
@@ -23,9 +23,11 @@ class _ProductsScopeState extends State<ProductsScope> {
   }) {
     setState(() {
       if (count > 0) {
-        countOfProduct[product] = count;
+        countOfProduct = {...countOfProduct, product: count};
       } else {
-        countOfProduct.remove(product);
+        final newEntries =
+            countOfProduct.entries.where((entry) => entry.key != product);
+        countOfProduct = Map.fromEntries(newEntries);
       }
     });
   }

@@ -1,8 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:pos_app/design/palette.dart';
+import 'package:pos_app/models/product.dart';
+import 'package:pos_app/src/view/keranjang/widgets/keranjang_product_counter.dart';
 
 class KeranjangListItemView extends StatelessWidget {
-  const KeranjangListItemView({super.key});
+  const KeranjangListItemView({
+    super.key,
+    required this.product,
+    required this.currentCount,
+    required this.onCountChanged,
+  });
+
+  final Product product;
+  final int currentCount;
+  final void Function({
+    required Product product,
+    required int count,
+  }) onCountChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +29,7 @@ class KeranjangListItemView extends StatelessWidget {
             width: 57,
             height: 57,
             decoration: BoxDecoration(
+              color: Palette.primary,
               borderRadius: BorderRadius.circular(4),
               border: Border.all(
                 color: const Color(0xfff0f0f0),
@@ -21,14 +37,41 @@ class KeranjangListItemView extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 10),
-          const Column(
-            children: [
-              Text('AAA'),
-              Text('AAA'),
-              Text('AAA'),
-              Text('AAA'),
-            ],
-          )
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '${product.category} | ${product.title}',
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  product.description,
+                  style: const TextStyle(fontSize: 8),
+                  maxLines: 2,
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  'Rp ${product.rp} x $currentCount = Rp ${product.rp * 2}',
+                  style: const TextStyle(
+                    fontSize: 8,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          KeranjangProductCounter(
+            currentCount: currentCount,
+            onPressed: (count) => onCountChanged(
+              product: product,
+              count: count,
+            ),
+          ),
         ],
       ),
     );

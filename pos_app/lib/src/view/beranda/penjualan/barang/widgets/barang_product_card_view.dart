@@ -1,31 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:pos_app/design/palette.dart';
 import 'package:pos_app/models/product.dart';
+import 'package:pos_app/src/state/products_provider.dart';
 import 'package:pos_app/src/view/beranda/penjualan/barang/widgets/barang_product_counter.dart';
 
-class BarangProductCardView extends StatefulWidget {
+class BarangProductCardView extends StatelessWidget {
   const BarangProductCardView({
     super.key,
     required this.product,
     required this.width,
+    required this.currentCount,
     required this.onCountChanged,
   });
 
   final Product product;
   final double width;
+  final int currentCount;
   final void Function(int count) onCountChanged;
 
   @override
-  State<BarangProductCardView> createState() => _BarangProductCardViewState();
-}
-
-class _BarangProductCardViewState extends State<BarangProductCardView> {
-  int currentCount = 0;
-
-  @override
   Widget build(BuildContext context) {
+    int currentCount =
+        ProductsProvider.of(context)?.countOfProduct[product] ?? 0;
     return Container(
-      width: widget.width,
+      width: width,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(8),
@@ -52,7 +50,7 @@ class _BarangProductCardViewState extends State<BarangProductCardView> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  widget.product.category,
+                  product.category,
                   style: const TextStyle(
                     fontSize: 8,
                     fontWeight: FontWeight.w500,
@@ -60,7 +58,7 @@ class _BarangProductCardViewState extends State<BarangProductCardView> {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  widget.product.title,
+                  product.title,
                   style: const TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w600,
@@ -68,7 +66,7 @@ class _BarangProductCardViewState extends State<BarangProductCardView> {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  '${widget.product.description}\n',
+                  '${product.description}\n',
                   style: const TextStyle(
                     color: Color(0xFF60626E),
                     fontSize: 8,
@@ -77,7 +75,7 @@ class _BarangProductCardViewState extends State<BarangProductCardView> {
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  'Rp ${widget.product.rp}',
+                  'Rp ${product.rp}',
                   style: const TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w500,
@@ -86,10 +84,7 @@ class _BarangProductCardViewState extends State<BarangProductCardView> {
                 const SizedBox(height: 15),
                 BarangProductCounter(
                   currentCount: currentCount,
-                  onPressed: (count) => setState(() {
-                    currentCount = count;
-                    widget.onCountChanged(currentCount);
-                  }),
+                  onPressed: onCountChanged,
                 ),
               ],
             ),

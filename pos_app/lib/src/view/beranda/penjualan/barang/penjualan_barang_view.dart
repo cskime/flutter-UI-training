@@ -54,6 +54,9 @@ class _PenjualanBarangViewState extends State<PenjualanBarangView> {
                       (product) => BarangProductCardView(
                         product: product,
                         width: itemWidth,
+                        currentCount: ProductsProvider.of(context)
+                                ?.countOfProduct[product] ??
+                            0,
                         onCountChanged: (count) => setState(() {
                           ProductsProvider.of(context)?.onCountChanged(
                             product: product,
