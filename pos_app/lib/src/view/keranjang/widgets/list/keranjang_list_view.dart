@@ -8,12 +8,13 @@ class KeranjangListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = ProductsProvider.of(context);
-    final children = provider?.countOfProduct.entries
+    final children = provider?.countOfProduct.entries.indexed
         .map(
           (element) => KeranjangListItemView(
-            product: element.key,
-            currentCount: element.value,
+            product: element.$2.key,
+            currentCount: element.$2.value,
             onCountChanged: provider.onCountChanged,
+            isFirstItem: element.$1 == 0,
           ),
         )
         .toList();

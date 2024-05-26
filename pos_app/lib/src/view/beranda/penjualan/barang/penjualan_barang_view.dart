@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:pos_app/design/components/back_button.dart';
+import 'package:pos_app/design/components/pos_button/pos_button.dart';
 import 'package:pos_app/design/svg_icon_provider.dart';
 import 'package:pos_app/models/product.dart';
 import 'package:pos_app/src/state/products_provider.dart';
 import 'package:pos_app/src/utils/build_context_navigator_ext.dart';
 import 'package:pos_app/src/view/base/base_app_bar.dart';
 import 'package:pos_app/src/view/base/base_screen.dart';
-import 'package:pos_app/src/view/beranda/penjualan/barang/widgets/barang_keranjang_button.dart';
 import 'package:pos_app/src/view/beranda/penjualan/barang/widgets/barang_product_card_view.dart';
 import 'package:pos_app/src/view/beranda/penjualan/barang/widgets/barang_product_total_label.dart';
 import 'package:pos_app/src/view/beranda/widgets/penjualan_search_bar.dart';
-import 'package:pos_app/src/view/common/widgets/back_button.dart';
 import 'package:pos_app/src/view/keranjang/keranjang_view.dart';
 
 class PenjualanBarangView extends StatefulWidget {
@@ -79,7 +79,9 @@ class _PenjualanBarangViewState extends State<PenjualanBarangView> {
               ),
               const SizedBox(width: 16),
               Expanded(
-                child: BarangKeranjangButton(
+                child: POSButton(
+                  style: POSButtonStyle.primary,
+                  title: 'Masuk Keranjang',
                   onPressed: () => context.push(const KeranjangView()),
                 ),
               ),

@@ -17,6 +17,12 @@ class ProductsProvider extends InheritedWidget {
 
   int get numberOfProducts => countOfProduct.entries.length;
 
+  int get subtotalRp => countOfProduct.entries.fold(
+        0,
+        (previousValue, element) =>
+            previousValue + element.key.rp * element.value,
+      );
+
   @override
   bool updateShouldNotify(covariant ProductsProvider oldWidget) {
     return countOfProduct != oldWidget.countOfProduct;

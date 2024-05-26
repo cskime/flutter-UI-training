@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:pos_app/design/palette.dart';
 
-class BarangKeranjangButton extends StatefulWidget {
-  const BarangKeranjangButton({
+part 'pos_button_style.dart';
+
+class POSButton extends StatefulWidget {
+  const POSButton({
     super.key,
+    required this.style,
+    required this.title,
     required this.onPressed,
   });
 
+  final POSButtonStyle style;
+  final String title;
   final void Function() onPressed;
 
   @override
-  State<BarangKeranjangButton> createState() => _BarangKeranjangButtonState();
+  State<POSButton> createState() => _POSButtonState();
 }
 
-class _BarangKeranjangButtonState extends State<BarangKeranjangButton> {
+class _POSButtonState extends State<POSButton> {
   bool _isSelected = false;
 
   void updateSelectedState() {
@@ -33,16 +39,17 @@ class _BarangKeranjangButtonState extends State<BarangKeranjangButton> {
       child: Container(
         height: 56,
         decoration: BoxDecoration(
-          color: _isSelected ? const Color(0xFF3436B1) : Palette.primary,
+          color: widget.style.backgroundColor(isSelected: _isSelected),
           borderRadius: BorderRadius.circular(4),
+          border: Border.all(color: Palette.primary),
         ),
-        child: const Center(
+        child: Center(
           child: Text(
-            'Masuk Keranjang',
+            widget.title,
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w500,
-              color: Colors.white,
+              color: widget.style.foregroundColor,
             ),
           ),
         ),
