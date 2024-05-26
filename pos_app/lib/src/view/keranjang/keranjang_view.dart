@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pos_app/design/svg_icon_provider.dart';
+import 'package:pos_app/src/utils/build_context_navigator_ext.dart';
 import 'package:pos_app/src/view/base/base_app_bar.dart';
 import 'package:pos_app/src/view/base/base_screen.dart';
 import 'package:pos_app/src/view/beranda/widgets/penjualan_search_bar.dart';
@@ -16,7 +17,7 @@ class KeranjangView extends StatelessWidget {
       body: BaseScreen(
         header: BaseAppBar(
           title: 'Penjualan',
-          leading: const POSBackButton(),
+          leading: context.canPop ? const POSBackButton() : null,
           trailing: SvgIconProvider.icon('icon-note'),
         ),
         body: const Column(
