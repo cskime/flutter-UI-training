@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:pos_app/src/utils/build_context_navigator_ext.dart';
 import 'package:pos_app/src/view/base/base_screen.dart';
+import 'package:pos_app/src/view/beranda/laporan/laporan_view.dart';
 import 'package:pos_app/src/view/beranda/penjualan/kategori/penjualan_kategori_view.dart';
 import 'package:pos_app/src/view/beranda/widgets/beranda_app_bar.dart';
 import 'package:pos_app/src/view/beranda/widgets/image_carousel.dart';
@@ -62,7 +63,10 @@ class _BerandaViewState extends State<BerandaView> {
                           const MenuItem(menu: Menu.pelanggan),
                           const MenuItem(menu: Menu.pegawai),
                           const MenuItem(menu: Menu.produk),
-                          const MenuItem(menu: Menu.laporan),
+                          MenuItem(
+                            menu: Menu.laporan,
+                            onPressed: () => context.push(const LaporanView()),
+                          ),
                         ],
                       ),
                     ),
