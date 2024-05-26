@@ -4,7 +4,7 @@
 
 ## Result
 
-![result](#)
+<img src="./demo.gif" width="300" />
 
 ## What I Learned
 
@@ -77,3 +77,4 @@
 - [`flutter_native_splash`](https://pub.dev/packages/flutter_native_splash) package for splash screen.
 - [`flutter_svg`](https://pub.dev/packages/flutter_svg) package for using a SVG icon.
 - [`flutter_staggered_grid_view`](https://pub.dev/packages/flutter_staggered_grid_view) package for a grid view to layout an item with content sized height.
+  !
